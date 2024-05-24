@@ -1,5 +1,5 @@
-const redis = require('redis');
-const client = redis.createClient();
+import { createClient } from 'redis';
+const client = createClient();
 
 client.on('error', (err) => {
   console.error('Redis error:', err);
@@ -23,4 +23,4 @@ const setCachedData = (key, value, expiry = 3600) => {
   });
 };
 
-module.exports = { getCachedData, setCachedData };
+export default { getCachedData, setCachedData };

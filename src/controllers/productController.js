@@ -1,4 +1,4 @@
-const { getProductDescription } = require('../services/productService');
+import { getProductDescription } from '../services/productService';
 
 const getProductData = async (req, res) => {
   const { url } = req.query;
@@ -16,4 +16,4 @@ const getProductData = async (req, res) => {
   }
 };
 
-module.exports = { getProductData };
+export default { getProductData };

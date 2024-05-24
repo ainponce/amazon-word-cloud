@@ -1,4 +1,5 @@
-const { createClient } = require('@redis/client');
+import { createClient } from '@redis/client';
+
 const redisClient = createClient();
 
 redisClient.on('error', (err) => {
@@ -9,4 +10,4 @@ redisClient.on('error', (err) => {
   await redisClient.connect();
 })();
 
-module.exports = redisClient;
+export default redisClient;
