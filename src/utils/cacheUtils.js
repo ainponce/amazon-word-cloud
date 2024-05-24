@@ -17,7 +17,7 @@ const getCachedData = (key) => {
 
 const setCachedData = (key, value, expiry = 3600) => {
   return new Promise((resolve, reject) => {
-    client.setex(key, expiry, value, (err) => {
+    client.setEx(key, expiry, value, (err) => {
       if (err) reject(err);
       resolve();
     });
