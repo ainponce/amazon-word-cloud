@@ -6,13 +6,14 @@ const { calculateWordFrequency } = require('../utils/wordUtils');
 
 const getProductDescription = async (url) => {
   const cachedData = await getCachedData(url);
+  
   if (cachedData) {
     return JSON.parse(cachedData);
   }
 
   const response = await axios.get(url);
   const $ = cheerio.load(response.data);
-  const description = $('#productDescription').text().trim() || $('.a-expander-content.a-expander-partial-collapse-content').text().trim();
+  const description = $('div#productDescription p span').text().trim();
   const words = description.split(/\W+/).map(word => word.toLowerCase());
   const filteredWords = removeStopwords(words);
   const wordFrequency = calculateWordFrequency(filteredWords);
