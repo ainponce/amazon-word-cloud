@@ -1,4 +1,4 @@
-import { getProductDescription } from '../services/productService';
+import productService from '../services/productService';
 
 const getProductData = async (req, res) => {
   const { url } = req.query;
@@ -8,7 +8,7 @@ const getProductData = async (req, res) => {
   }
 
   try {
-    const data = await getProductDescription(url);
+    const data = await productService.getProductDescription(url);
     res.json(data);
   } catch (error) {
     console.error(error);

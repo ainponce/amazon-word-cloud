@@ -1,6 +1,6 @@
-import { createClient } from '@redis/client';
+import redis from '@redis/client';
 
-const redisClient = createClient();
+const redisClient = redis.createClient();
 
 redisClient.on('error', (err) => {
   console.error('Redis client error', err);
