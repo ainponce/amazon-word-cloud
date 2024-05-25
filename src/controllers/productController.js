@@ -1,7 +1,8 @@
-import productService from '../services/productService';
+import productService from '../services/productService.js';
 
 const getProductData = async (req, res) => {
-  const { url } = req.query;
+  const url = "http://www.amazon.com/gp/product/B00VVOCSOU";
+  // const url = req.query;
 
   if (!url) {
     return res.status(400).send('URL is required');

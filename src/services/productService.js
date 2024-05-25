@@ -3,6 +3,7 @@ import cheerio from 'cheerio';
 import stopword from 'stopword';
 import cacheUtils from '../utils/cacheUtils.js';
 import wordUtils from '../utils/wordUtils.js';
+import wordCloudUtils from '../utils/wordCloudUtils.js';
 
 const getProductDescription = async (url) => {
   const cachedData = await cacheUtils.getCachedData(url);
@@ -16,10 +17,10 @@ const getProductDescription = async (url) => {
   const description = $('div#productDescription p span').text().trim();
   const words = description.split(/\W+/).map(word => word.toLowerCase());
   const filteredWords = stopword.removeStopwords(words);
-  const wordFrequency = wordUtils.calculateWordFrequency(filteredWords);
-
+  const wordFrequency = (Object.entries(wordUtils.calculateWordFrequency(filteredWords)).filter(word => word[1] > 1));
+  console.log(wordFrequency);
   await cacheUtils.setCachedData(url, JSON.stringify(wordFrequency));
-  return wordFrequency;
+  return wordCloudUtils.generateWordCloudData(wordFrequency);
 };
 
 export default { getProductDescription };

@@ -1,9 +1,10 @@
-import redis from '@redis/client';
+import redis from 'redis';
 
-const redisClient = redis.createClient();
+const client = redis.createClient({
+  host: '127.0.0.1',
+  port: 6379
+});
 
-redisClient.on('error', (err) => {
-  console.error('Redis client error', err);
-}).connect();
+await client.connect();
 
-export default redisClient;
+export default client;
