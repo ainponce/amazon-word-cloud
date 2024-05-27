@@ -1,19 +1,16 @@
 import express from 'express';
-import productController from './controllers/productController.js';
+import productRouter from './routes/productRoutes.js';
 
 const app = express();
 const port = 8080;
 
-app.use(express.json());
+//Configure view engine
+app.set('view engine', 'ejs');
+app.set('views', './src/views');
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the product info service!');
-});
+app.use('/', productRouter);
 
-app.get('/productInfo', async (req, res) => {
-    await productController.getProductData(req, res);
-});
-
+//Start the server
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });

@@ -1,8 +1,14 @@
 import { Router } from 'express';
-import productController from '../controllers/productController.js'; 
+import productController from '../controllers/productController.js';
 
 const router = Router();
 
-router.get('/productUrl', productController.getProductData);
+router.get('/', (req, res) => {
+    res.send('Welcome to the product info service!');
+});
+
+router.get('/productInfo', async (req, res) => {
+    await productController.getProductData(req, res);
+});
 
 export default router;
