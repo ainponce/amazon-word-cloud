@@ -11,4 +11,8 @@ router.post('/productInfo', async (req, res) => {
     await productController.getProductData(req, res);
 });
 
+router.get('/productInfo', async (req, res) => {
+    await productController.getProductData(req, res);
+});
+
 export default router;
