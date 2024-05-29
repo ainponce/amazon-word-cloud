@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     res.send('Welcome to the product info service!');
 });
 
-router.get('/productInfo', async (req, res) => {
+router.post('/productInfo', async (req, res) => {
     await productController.getProductData(req, res);
 });
 

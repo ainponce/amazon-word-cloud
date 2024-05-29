@@ -5,11 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sirius Software Challenge</title>
+    <script src="/scripts/src/wordcloud2.js"></script>
+    <style>
+        #word-cloud {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Word Cloud</h1>
-    <pre><%= JSON.stringify(data, null, 2) %></pre>
+    <canvas id="word-cloud"></canvas>
+    <script>
+        const wordFrequency = <%= JSON.stringify(data) %>;
+
+        // Transform the word frequency object into an array suitable for wordcloud2.js
+        const wordArray = Object.entries(wordFrequency).map(([word, count]) => [word, count]);
+
+        // Generate the word cloud
+        WordCloud(document.getElementById('word-cloud'), { list: wordArray });
+    </script>
 </body>
 
 </html>
