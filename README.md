@@ -47,5 +47,6 @@ Para levantar el servidor en modo desarrollo, usa el siguiente comando:
   ```
 ### Correr Script
   ```sh
+  cd script
   ./simulateRequest.sh localhost 8080 url 1
   ```
