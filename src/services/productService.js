@@ -13,7 +13,7 @@ const getProductDescription = async (url) => {
 
   const response = await axios.get(url);
   const $ = cheerio.load(response.data);
-  const description = $('div#productDescription p span').text().trim();
+  const description = $('div[id="productDescription"] p span').text().trim();
   const words = description.split(/\W+/).map(word => word.toLowerCase());
   const filteredWords = stopword.removeStopwords(words);
   const wordFrequency = (Object.entries(wordUtils.calculateWordFrequency(filteredWords)).filter(word => word[1] > 1));
